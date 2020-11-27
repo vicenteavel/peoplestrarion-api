@@ -2,6 +2,12 @@ const connection = require('../database/connection');
 const yup = require('yup');
 
 module.exports = {
+   async index(req, res) {
+      const people = await connection('people').select('*').where(req.query);
+
+      return res.json(people);
+   },
+
    async create(req, res) {
       const {name, gender, email, birthday, place_of_birthday, nationality, cpf } = req.body;
 
