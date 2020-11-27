@@ -68,5 +68,13 @@ module.exports = {
 
          return res.json(error);
       }
+   },
+
+   async delete(req, res) {
+      const { id } = req.params;
+
+      const response = await connection('people').where('id', id).delete();
+
+      return res.json({ status: !!response });
    }
 }
